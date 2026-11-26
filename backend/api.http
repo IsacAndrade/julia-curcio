@@ -1,0 +1,36 @@
+@baseUrl = http://127.0.0.1:3000
+@sessao = cole-aqui-o-data-sessao
+
+### 1. Listar posts
+GET {{baseUrl}}/posts
+
+### 2. Listar só um formato
+GET {{baseUrl}}/posts?formato=Fotografia
+
+### 3. Criar post
+POST {{baseUrl}}/post
+Content-Type: application/json
+X-Pedido: mesmo-site
+X-Sessao: {{sessao}}
+
+{
+  "titulo": "Peça de teste",
+  "descricao": "Um teste via api.http, no mesmo formato da aula.",
+  "formato": "Fotografia",
+  "imgUrl": "/fotos/orla.jpg"
+}
+
+### 4. Atualizar post
+PUT {{baseUrl}}/posts/filme
+Content-Type: application/json
+X-Pedido: mesmo-site
+X-Sessao: {{sessao}}
+
+{
+  "descricao": "Captação, direção e edição para uma marca dizer quem é."
+}
+
+### 5. Apagar post
+DELETE {{baseUrl}}/posts/post-substitua-pelo-id
+X-Pedido: mesmo-site
+X-Sessao: {{sessao}}
