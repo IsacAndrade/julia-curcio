@@ -1,10 +1,8 @@
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
 import multer from "multer";
 import { getSessao, postLogin, postLogout } from "../controllers/acessoController.js";
 import {
   deletePost,
+  getFoto,
   getPost,
   getPosts,
   postPost,
@@ -14,21 +12,8 @@ import {
 import { lerMidia, obterPerfil, perfilPublico } from "../instagram.js";
 import { exigirLogin, exigirPedido } from "../middleware/sessoes.js";
 
-const pastaUploads = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "uploads");
-fs.mkdirSync(pastaUploads, { recursive: true });
-
-const storage = multer.diskStorage({
-  destination(_req, _file, cb) {
-    cb(null, pastaUploads);
-  },
-  filename(_req, file, cb) {
-    const seguro = file.originalname.replace(/[^\w.\-]+/g, "-");
-    cb(null, `${Date.now()}-${seguro}`);
-  },
-});
-
 const upload = multer({
-  storage,
+  storage: multer.memoryStorage(),
   limits: { fileSize: 8 * 1024 * 1024 },
   fileFilter(_req, file, cb) {
     if (/^image\/(jpeg|png|webp|gif)$/.test(file.mimetype)) {
@@ -81,6 +66,7 @@ const routes = (app) => {
   });
 
   app.get("/posts", getPosts);
+  app.get("/posts/:id/foto", getFoto);
   app.get("/posts/:id", getPost);
   app.post("/post", adm, postPost);
   app.post("/upload", adm, comImagem, postUpload);

@@ -1,5 +1,6 @@
 import {
   atualizarPost,
+  buscarImagem,
   buscarPost,
   criarPost,
   deletarPost,
@@ -44,9 +45,11 @@ function validar(dados, parcial = false) {
   return erros;
 }
 
-async function salvarNovo(req, res, imgUrl) {
+async function salvarNovo(req, res, imagem) {
   const erros = validar(req.body);
-  if (!imgUrl) erros.push("Escolha uma foto para adicionar o trabalho.");
+  const arquivo = imagem?.buffer;
+  const imgUrl = typeof imagem === "string" ? imagem : "";
+  if (!arquivo && !imgUrl) erros.push("Escolha uma foto para adicionar o trabalho.");
   if (erros.length > 0) {
     return res.status(400).json({ erros });
   }
@@ -55,6 +58,8 @@ async function salvarNovo(req, res, imgUrl) {
     descricao: String(req.body.descricao).trim(),
     formato: req.body.formato,
     imgUrl,
+    imagem: arquivo,
+    imagemTipo: imagem?.tipo || "",
     inclui: linhas(req.body.inclui),
   });
   res.status(201).json(post);
@@ -78,7 +83,15 @@ export function postPost(req, res) {
 }
 
 export function postUpload(req, res) {
-  return salvarNovo(req, res, req.file ? `/uploads/${req.file.filename}` : "");
+  return salvarNovo(req, res, req.file ? { buffer: req.file.buffer, tipo: req.file.mimetype } : "");
+}
+
+export async function getFoto(req, res) {
+  const foto = await buscarImagem(req.params.id);
+  if (!foto) return res.status(404).end();
+  res.setHeader("Content-Type", foto.tipo);
+  res.setHeader("Cache-Control", "public, max-age=86400");
+  res.send(foto.corpo);
 }
 
 export async function putPost(req, res) {
@@ -87,7 +100,12 @@ export async function putPost(req, res) {
   if (req.body.descricao !== undefined) dados.descricao = String(req.body.descricao).trim();
   if (req.body.formato !== undefined) dados.formato = req.body.formato;
   if (req.body.inclui !== undefined) dados.inclui = linhas(req.body.inclui);
-  if (req.file) dados.imgUrl = `/uploads/${req.file.filename}`;
+  if (req.file) {
+    dados.imagem = req.file.buffer;
+    dados.imagemTipo = req.file.mimetype;
+    dados.temImagem = true;
+    dados.imagemEm = new Date();
+  }
   else if (req.body.imgUrl) {
     const imgUrl = imagemSegura(req.body.imgUrl);
     if (imgUrl === null) {
@@ -102,7 +120,7 @@ export async function putPost(req, res) {
   }
 
   const erros = validar(dados, true);
-  if (!dados.imgUrl && !atual.imgUrl) erros.push("Escolha uma foto para adicionar o trabalho.");
+  if (!dados.imagem && !dados.imgUrl && !atual.imgUrl) erros.push("Escolha uma foto para adicionar o trabalho.");
   if (erros.length > 0) return res.status(400).json({ erros });
 
   const post = await atualizarPost(req.params.id, dados);
