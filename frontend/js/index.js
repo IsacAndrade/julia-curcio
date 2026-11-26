@@ -37,7 +37,7 @@ const observador = new IntersectionObserver(
   },
   { rootMargin: "-28% 0px -55% 0px", threshold: [0.05, 0.2, 0.45] },
 );
-["oficio", "quem-sou", "trabalho", "contato"].forEach((id) => observador.observe(document.getElementById(id)));
+["oficio", "servicos", "trabalho", "quem-sou", "contato"].forEach((id) => observador.observe(document.getElementById(id)));
 
 const lista = document.querySelector("#lista-posts");
 const detalhe = document.querySelector("#detalhe");
