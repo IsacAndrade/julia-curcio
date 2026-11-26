@@ -342,7 +342,8 @@ h2 { font-size: 34px; line-height: 40px; }
 }
 .contato-chamada .assinatura { font-size: 34px; line-height: 40px; }
 .contato-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-.contato-acoes .botao { width: fit-content; padding-inline: 22px; }
+.contato-acoes .botao { width: fit-content; gap: 8px; padding-inline: 22px; }
+.contato-acoes .botao svg { width: 18px; height: 18px; flex: none; margin-top: -3px; }
 
 footer { border-top: 1px solid var(--linha); }
 .rodape { padding-top: 40px; }
