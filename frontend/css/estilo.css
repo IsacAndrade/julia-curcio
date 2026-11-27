@@ -354,8 +354,13 @@ h2 { font-size: 34px; line-height: 40px; }
   border: 1px solid rgb(20 20 20 / 12%);
 }
 .contato-chamada .assinatura { font-size: 34px; line-height: 40px; }
-.contato-acoes { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
-.contato-acoes .botao { width: fit-content; height: auto; min-height: 48px; gap: 8px; padding: 12px 22px; white-space: normal; text-align: left; }
+.contato-acoes { display: inline-grid; justify-items: stretch; gap: 10px; max-width: 100%; }
+.contato-acoes .botao { width: 100%; height: auto; min-height: 48px; gap: 8px; padding: 12px 22px; white-space: nowrap; text-align: left; justify-content: flex-start; }
+@media (max-width: 699px) {
+  .contato-chamada,
+  .contato-acoes { width: 100%; }
+  .contato-acoes .botao { white-space: normal; }
+}
 .contato-acoes .botao svg { width: 18px; height: 18px; flex: none; margin-top: -3px; }
 
 footer { border-top: 1px solid var(--linha); }
