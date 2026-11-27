@@ -346,15 +346,15 @@ h2 { font-size: 34px; line-height: 40px; }
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 18px;
-  width: min(100%, 520px);
+  width: fit-content;
+  max-width: 100%;
   margin-top: 28px;
-  padding: 28px 28px 32px;
+  padding: 14px;
   background: var(--papel);
   border: 1px solid rgb(20 20 20 / 12%);
 }
 .contato-chamada .assinatura { font-size: 34px; line-height: 40px; }
-.contato-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.contato-acoes { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
 .contato-acoes .botao { width: fit-content; height: auto; min-height: 48px; gap: 8px; padding: 12px 22px; white-space: normal; text-align: left; }
 .contato-acoes .botao svg { width: 18px; height: 18px; flex: none; margin-top: -3px; }
 
@@ -539,9 +539,8 @@ input, select, textarea { font: inherit; color: var(--tinta); }
   #contato { padding: 61px 0 64px; }
   .contato-texto h2 { max-width: 720px; font-size: 36px; line-height: 46px; }
   .contato-texto p:not(.regua):not(.assinatura) { max-width: 520px; margin-top: 28px; }
-  .contato-chamada { width: fit-content; max-width: min(100%, 760px); margin-top: 32px; padding: 40px 48px 44px; }
+  .contato-chamada { margin-top: 32px; padding: 16px; }
   .contato-acoes { gap: 12px; }
-  .contato-acoes .botao { padding-inline: 32px; }
   .contato-chamada .assinatura { font-size: 36px; line-height: 46px; }
 
   .rodape { padding-top: 48px; }
