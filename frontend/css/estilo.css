@@ -451,18 +451,7 @@ input, select, textarea { font: inherit; color: var(--tinta); }
   .menu { gap: 28px; }
   .menu a { position: relative; top: 1px; }
 
-  .regua { display: block; margin-bottom: 36px; }
-  .regua::after { position: absolute; top: 6px; left: var(--de, 0); right: var(--ate, 0); }
-  .hero .regua { --de: 276.6px; }
-  #oficio .regua { --de: 140.6px; }
-  #metodo .regua { --de: 130.8px; }
-  .para-quem .regua { --de: 101.7px; }
-  #quem-sou .miolo > .regua { --de: 92px; }
-  .essencia .regua { --de: 150.3px; --ate: 0px; }
-  .essencia .regua::after { right: auto; width: calc(100cqi - 150.3px); }
-  .objetivo .regua { --de: 92px; --ate: 0px; }
-  #trabalho .regua { --de: 92px; }
-  #contato .regua { --de: 82.2px; }
+  .regua { margin-bottom: 36px; }
 
   .hero { padding: 139px 0 71px; }
   h1 { font-size: 64px; line-height: 74px; }
