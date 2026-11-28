@@ -462,11 +462,10 @@ input, select, textarea { font: inherit; color: var(--tinta); }
   .hero { padding: 139px 0 71px; }
   h1 { font-size: 64px; line-height: 74px; }
   .hero h1 { max-width: 11em; font-size: 52px; line-height: 60px; }
-  .hero-grade { grid-template-columns: minmax(0, 1fr) 420px; gap: 0 64px; align-items: center; margin-top: 35px; }
+  .hero-grade { grid-template-columns: minmax(0, 1fr) 420px; gap: 0 64px; align-items: start; margin-top: 0; }
   .hero-grade p { max-width: 520px; font-size: 17px; line-height: 26px; }
   .hero-retrato { width: 420px; }
 
-  #oficio { padding: 61px 0 72px; }
   #oficio .duas-colunas { grid-template-columns: minmax(0, 1fr) 480px; gap: 0 40px; align-items: start; }
   #oficio h2 { max-width: 640px; font-size: 48px; line-height: 58px; }
   #oficio .duas-colunas p { max-width: 420px; margin-top: 31px; font-size: 16px; line-height: 26px; }

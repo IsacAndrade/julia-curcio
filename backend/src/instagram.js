@@ -37,23 +37,16 @@ function montar(html) {
   const vistos = new Set();
   const imagens = new Set();
   const posts = [];
-  const repetidas = [];
   const marcas = texto.matchAll(/"shortcode":"([A-Za-z0-9_-]+)","is_video":(true|false)[\s\S]{0,900}?"display_url":"(https:[^"]+)"/g);
   for (const item of marcas) {
     const codigo = item[1];
     const chave = chaveImagem(item[3]);
-    if (vistos.has(codigo) || !urlPermitida(item[3])) continue;
+    if (vistos.has(codigo) || imagens.has(chave) || !urlPermitida(item[3])) continue;
     vistos.add(codigo);
-    const post = { codigo, video: item[2] === "true", origem: item[3] };
-    if (imagens.has(chave)) {
-      repetidas.push(post);
-      continue;
-    }
     imagens.add(chave);
-    posts.push(post);
+    posts.push({ codigo, video: item[2] === "true", origem: item[3] });
+    if (posts.length === 6) break;
   }
-  while (posts.length < 9 && repetidas.length) posts.push(repetidas.shift());
-  if (posts.length > 9) posts.length = 9;
   const indice = texto.indexOf(`"username":"${USUARIO}"`);
   const trecho = texto.slice(Math.max(0, indice - 4000), indice + 4000);
   const nome = trecho.match(/"full_name":"([^"]*)"/)?.[1] || USUARIO;
