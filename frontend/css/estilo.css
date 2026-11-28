@@ -173,6 +173,7 @@ h2 { font-size: 34px; line-height: 40px; }
 .hero h1 { max-width: 16em; font-size: 36px; line-height: 44px; }
 .hero-grade { display: grid; gap: 32px; margin-top: 24px; align-items: center; }
 .hero-grade p { max-width: 38em; color: var(--texto); font-size: 16px; line-height: 26px; }
+.oficio-marca { margin: 0 0 8px; }
 .hero-retrato { width: min(100%, 420px); justify-self: start; }
 
 .duas-colunas, .quem-grade { display: grid; gap: 24px; }
@@ -349,9 +350,9 @@ h2 { font-size: 34px; line-height: 40px; }
   width: fit-content;
   max-width: 100%;
   margin-top: 28px;
-  padding: 14px;
-  background: var(--papel);
-  border: 1px solid rgb(20 20 20 / 12%);
+  padding: 0;
+  background: none;
+  border: 0;
 }
 .contato-chamada .assinatura { font-size: 34px; line-height: 40px; }
 .contato-acoes { display: inline-grid; justify-items: stretch; gap: 10px; max-width: 100%; }
@@ -519,7 +520,7 @@ input, select, textarea { font: inherit; color: var(--tinta); }
   #trabalho h2 { font-size: 48px; line-height: 58px; }
   .trabalho-topo .assinatura { margin-top: 47px; font-size: 36px; line-height: 48px; }
   .filtros { gap: 11px; margin-top: 40px; }
-  .instagram-grade { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
+  .instagram-grade { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 22px; max-width: 720px; }
   .instagram-nome { font-size: 32px; line-height: 36px; }
   .filtro { justify-content: center; padding-inline: 18px; }
   .posts { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 36px 16px; margin-top: 40px; }
@@ -533,7 +534,7 @@ input, select, textarea { font: inherit; color: var(--tinta); }
   #contato { padding: 61px 0 64px; }
   .contato-texto h2 { max-width: 720px; font-size: 36px; line-height: 46px; }
   .contato-texto p:not(.regua):not(.assinatura) { max-width: 520px; margin-top: 28px; }
-  .contato-chamada { margin-top: 32px; padding: 16px; }
+  .contato-chamada { margin-top: 32px; padding: 0; }
   .contato-acoes { gap: 12px; }
   .contato-chamada .assinatura { font-size: 36px; line-height: 46px; }
 
